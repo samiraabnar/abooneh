@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>آبونه کتاب دماوند — لذت خواندن را هدیه دهید</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --purple: #370064;
+      --purple-light: #4a0e7a;
+      --purple-dark: #2a004d;
+      --orange: #F49000;
+      --orange-hover: #e08300;
+      --coral: #F9783F;
+      --blue-wash: #d6eaf8;
+      --blue-wash-light: #eaf4fc;
+      --text-dark: #2c2c3a;
+      --text-mid: #4a4a5a;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+      line-height: 1.9;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--purple);
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 4px 20px rgba(55,0,100,0.3); }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 1.5rem;
+    }
+    .nav-logo {
+      font-size: 1.4rem; font-weight: 900;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: rgba(255,255,255,0.8);
+      font-size: 0.92rem; font-weight: 700;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--orange); color: var(--white) !important;
+      padding: 0.5rem 1.4rem; border-radius: 8px;
+      border: 2px solid var(--purple-dark);
+      font-weight: 800 !important;
+      transition: background .2s, transform .15s;
+    }
+    .nav-cta:hover { background: var(--orange-hover); transform: translateY(-1px); }
+    .lang-switch {
+      color: rgba(255,255,255,0.6) !important;
+      font-size: 0.82rem !important;
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      transition: all .2s;
+    }
+    .lang-switch:hover {
+      color: var(--white) !important;
+      border-color: rgba(255,255,255,0.5);
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 6rem 1.5rem 4rem;
+      background: var(--white);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(to top, var(--blue-wash-light), transparent);
+    }
+    .hero-content { max-width: 750px; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: var(--purple); color: var(--white);
+      padding: 0.45rem 1.2rem; border-radius: 50px;
+      font-size: 0.88rem; font-weight: 800;
+      margin-bottom: 1.8rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.4;
+      color: var(--purple);
+      margin-bottom: 1.2rem;
+      font-weight: 900;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--coral);
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-mid);
+      max-width: 580px; margin: 0 auto 2.5rem;
+      font-weight: 600;
+    }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2.2rem;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 1rem; font-weight: 800;
+      text-decoration: none;
+      transition: all .2s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--orange); color: var(--white);
+      border: 2px solid var(--purple-dark);
+      box-shadow: 0 4px 0 var(--purple-dark);
+    }
+    .btn-primary:hover {
+      background: var(--orange-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 var(--purple-dark);
+    }
+    .btn-primary:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 0 var(--purple-dark);
+    }
+    .btn-outline {
+      background: var(--white); color: var(--purple);
+      border: 2px solid var(--purple);
+    }
+    .btn-outline:hover {
+      background: var(--purple); color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ---- SECTIONS ---- */
+    section { padding: 5rem 1.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.82rem; font-weight: 800;
+      letter-spacing: 0.05em;
+      color: var(--coral);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+      color: var(--coral);
+      margin-bottom: 1rem;
+      line-height: 1.4;
+      font-weight: 900;
+    }
+    .section-subtitle {
+      font-size: 1.05rem; color: var(--text-mid);
+      max-width: 620px; margin-bottom: 3rem;
+      font-weight: 600;
+    }
+
+    /* ---- ABOUT / STORY ---- */
+    .about {
+      background: var(--white);
+      position: relative;
+    }
+    .about::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 100%;
+      background:
+        radial-gradient(ellipse 80% 60% at 90% 80%, rgba(214,234,248,0.5) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 10% 20%, rgba(214,234,248,0.3) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+    }
+    .about-visual {
+      background: linear-gradient(135deg, var(--blue-wash-light), var(--blue-wash));
+      border-radius: 24px;
+      padding: 3rem;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 350px;
+      position: relative;
+      border: 3px solid var(--purple);
+      order: 2;
+    }
+    .about-emoji {
+      font-size: 6rem;
+      line-height: 1;
+    }
+    .about-visual .float-card {
+      position: absolute;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 0.7rem 1.1rem;
+      border: 2px solid var(--purple);
+      font-size: 0.82rem; font-weight: 800;
+      color: var(--purple);
+    }
+    .float-card.fc1 { top: 1.5rem; left: 1.5rem; }
+    .float-card.fc2 { bottom: 1.5rem; right: 1.5rem; }
+    .about-text {
+      order: 1;
+    }
+    .about-text p {
+      margin-bottom: 1rem; color: var(--text-mid);
+      font-weight: 600;
+    }
+    .about-text a { color: var(--coral); font-weight: 700; }
+
+    /* ---- WHY BOOKS ---- */
+    .why-books {
+      background: var(--purple);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .why-books::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 80% 20%, rgba(74,14,122,0.5) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(74,14,122,0.4) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .why-books .container { position: relative; max-width: 780px; }
+    .why-books .section-label { color: var(--orange); }
+    .why-books .section-title { color: var(--white); margin-bottom: 2rem; }
+    .why-books-text p {
+      color: rgba(255,255,255,0.82);
+      font-weight: 600;
+      font-size: 1.02rem;
+      margin-bottom: 1.3rem;
+      line-height: 2;
+    }
+    .why-books-text p:first-child {
+      font-size: 1.12rem;
+      color: rgba(255,255,255,0.92);
+      font-weight: 700;
+    }
+    .why-books-text p:last-child {
+      color: var(--orange);
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+
+    /* ---- HOW IT WORKS ---- */
+    .how {
+      background: var(--white);
+      position: relative;
+    }
+    .how::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 100% 50% at 50% 100%, rgba(214,234,248,0.4) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .how .container { position: relative; }
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .step {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 2rem;
+      position: relative;
+      border: 2px solid var(--purple);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .step:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 0 var(--purple);
+    }
+    .step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 42px; height: 42px;
+      background: var(--purple); color: var(--white);
+      border-radius: 50%;
+      font-weight: 900; font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .step h3 {
+      font-size: 1.1rem; font-weight: 800;
+      color: var(--purple);
+      margin-bottom: 0.5rem;
+    }
+    .step p { font-size: 0.93rem; color: var(--text-mid); line-height: 1.8; font-weight: 600; }
+
+    /* ---- PACKAGES ---- */
+    .packages {
+      background: var(--purple);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .packages::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 80% 80%, rgba(74,14,122,0.6) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% 30%, rgba(74,14,122,0.4) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .packages .container { position: relative; }
+    .packages .section-label { color: var(--orange); }
+    .packages .section-title { color: var(--white); }
+    .packages .section-subtitle { color: rgba(255,255,255,0.7); }
+    .pkg-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .pkg-card {
+      background: rgba(255,255,255,0.06);
+      border: 2px solid rgba(255,255,255,0.25);
+      border-radius: 18px;
+      padding: 2.2rem;
+      text-align: center;
+      transition: all .25s;
+      position: relative;
+    }
+    .pkg-card:hover {
+      border-color: var(--orange);
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.1);
+    }
+    .pkg-card.featured {
+      background: rgba(255,255,255,0.12);
+      border-color: var(--orange);
+    }
+    .pkg-card.featured::before {
+      content: 'محبوب‌ترین';
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--orange); color: var(--white);
+      padding: 0.25rem 1rem; border-radius: 50px;
+      font-size: 0.8rem; font-weight: 800;
+      border: 2px solid var(--purple-dark);
+    }
+    .pkg-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+    .pkg-duration {
+      font-size: 1.15rem; font-weight: 800;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .pkg-price {
+      font-size: 2.2rem; font-weight: 900;
+      color: var(--orange);
+      margin-bottom: 0.3rem;
+      direction: ltr;
+    }
+    .pkg-price-note {
+      font-size: 0.82rem; color: rgba(255,255,255,0.6);
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+    }
+    .pkg-features {
+      list-style: none;
+      text-align: right;
+      margin-bottom: 1.5rem;
+    }
+    .pkg-features li {
+      padding: 0.35rem 0;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      display: flex; align-items: flex-start; gap: 0.5rem;
+      font-weight: 600;
+    }
+    .pkg-features li::before {
+      content: '✓';
+      color: var(--orange);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .pkg-card .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* ---- DONATE SECTION ---- */
+    .donate {
+      background: var(--white);
+      position: relative;
+    }
+    .donate::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 90% 60% at 50% 0%, rgba(214,234,248,0.5) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .donate .container { position: relative; }
+    .donate-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .donate-info p {
+      color: var(--text-mid);
+      margin-bottom: 1.5rem;
+      font-size: 1.02rem;
+      font-weight: 600;
+    }
+    .donate-methods {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .donate-method {
+      display: flex; align-items: center; gap: 1.2rem;
+      background: var(--white);
+      border: 2px solid var(--purple);
+      border-radius: 14px;
+      padding: 1.2rem 1.5rem;
+      text-decoration: none;
+      color: var(--purple);
+      transition: all .2s;
+    }
+    .donate-method:hover {
+      background: var(--purple);
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 0 var(--purple-dark);
+    }
+    .donate-method:hover .dm-details p { color: rgba(255,255,255,0.7); }
+    .dm-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; font-weight: 900;
+      flex-shrink: 0;
+    }
+    .dm-icon.paypal { background: #003087; color: #fff; }
+    .dm-icon.venmo { background: #3D95CE; color: #fff; }
+    .dm-details { text-align: right; }
+    .dm-details h4 { font-size: 1rem; font-weight: 800; margin-bottom: 0.1rem; }
+    .dm-details p { font-size: 0.85rem; color: var(--text-mid); margin: 0; font-weight: 600; transition: color .2s; direction: ltr; text-align: right; }
+
+    .donate-right {
+      background: var(--purple);
+      border: 3px solid var(--purple-dark);
+      border-radius: 20px;
+      padding: 2.2rem;
+      color: var(--white);
+    }
+    .donate-right h3 {
+      font-size: 1.15rem; font-weight: 800;
+      margin-bottom: 1.2rem;
+      color: var(--orange);
+    }
+    .amount-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0.7rem;
+      margin-bottom: 1.2rem;
+    }
+    .amount-btn {
+      padding: 0.75rem;
+      border-radius: 10px;
+      border: 2px solid rgba(255,255,255,0.2);
+      background: transparent; color: var(--white);
+      font-family: inherit;
+      font-size: 1rem; font-weight: 800;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .amount-btn:hover, .amount-btn.active {
+      border-color: var(--orange);
+      background: rgba(244,144,0,0.15);
+      color: var(--orange);
+    }
+    .amount-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      display: block; margin-top: 0.2rem;
+      font-weight: 600;
+    }
+    .amount-btn.active .amount-label,
+    .amount-btn:hover .amount-label { color: var(--orange); }
+    .custom-amount {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      border: 2px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.06);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 1rem; font-weight: 700;
+      margin-bottom: 1.2rem;
+      outline: none;
+      transition: border-color .2s;
+      direction: ltr;
+      text-align: right;
+    }
+    .custom-amount::placeholder { color: rgba(255,255,255,0.3); }
+    .custom-amount:focus { border-color: var(--orange); }
+    .donate-note {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+      margin-top: 1rem;
+      line-height: 1.7;
+      font-weight: 600;
+    }
+
+    /* ---- IMPACT ---- */
+    .impact {
+      background: var(--white);
+      text-align: center;
+      position: relative;
+    }
+    .impact::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 50%, rgba(214,234,248,0.4) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 70%, rgba(214,234,248,0.3) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .impact .container { position: relative; }
+    .impact-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .stat-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 2rem 1.5rem;
+      border: 2px solid var(--purple);
+    }
+    .stat-num {
+      font-size: 1.3rem; font-weight: 900;
+      color: var(--coral);
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-size: 0.9rem; color: var(--text-mid);
+      font-weight: 700;
+    }
+
+    /* ---- FAQ ---- */
+    .faq { background: var(--white); }
+    .faq-list { max-width: 700px; margin: 0 auto; }
+    .faq-item {
+      border: 2px solid var(--purple);
+      border-radius: 14px;
+      margin-bottom: 0.8rem;
+      overflow: hidden;
+    }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer;
+      font-weight: 800; font-size: 1.02rem;
+      color: var(--purple);
+      background: none; border: none; width: 100%;
+      text-align: right; padding: 1.1rem 1.3rem;
+      font-family: inherit; line-height: 1.6;
+      transition: background .2s;
+    }
+    .faq-q:hover { background: rgba(55,0,100,0.03); }
+    .faq-q::after {
+      content: '+';
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--orange);
+      flex-shrink: 0; margin-right: 1rem;
+      margin-left: 0;
+      transition: transform .2s;
+    }
+    .faq-item.open .faq-q { background: rgba(55,0,100,0.03); }
+    .faq-item.open .faq-q::after { content: '−'; }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height .3s ease, padding .3s ease;
+      color: var(--text-mid);
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.9;
+      padding: 0 1.3rem;
+    }
+    .faq-item.open .faq-a {
+      max-height: 250px;
+      padding: 0 1.3rem 1.1rem;
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: var(--purple);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 3rem 1.5rem 2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      position: relative;
+      overflow: hidden;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 500px; height: 120px;
+      background: radial-gradient(ellipse 100% 100% at 50% 100%, rgba(74,14,122,0.6) 0%, transparent 70%);
+    }
+    footer .container { position: relative; }
+    footer a { color: var(--orange); text-decoration: none; font-weight: 700; }
+    footer a:hover { text-decoration: underline; }
+
+    .footer-mountain {
+      display: block;
+      margin: 1.5rem auto 0;
+      width: 200px;
+      opacity: 0.2;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 768px) {
+      .about-grid, .donate-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .about-visual { order: 0; }
+      .about-text { order: 1; }
+      .nav-links { display: none; }
+      .hero { padding: 5.5rem 1.5rem 3rem; min-height: auto; }
+      .amount-grid { grid-template-columns: repeat(2, 1fr); }
+      section { padding: 3.5rem 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: center; }
+      .pkg-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">آبونه <span>کتاب</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">درباره ما</a></li>
+      <li><a href="#how">چگونه کار می‌کند</a></li>
+      <li><a href="#packages">بسته‌ها</a></li>
+      <li><a href="#faq">سوالات</a></li>
+      <li><a href="index.html" class="lang-switch">English</a></li>
+      <li><a href="#donate" class="nav-cta">حمایت کنید</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">برنامه اشتراک کتاب دماوند برای بچه‌ها</div>
+    <h1>لذت خواندن را <em>به بچه‌ای هدیه دهید</em></h1>
+    <p>با کمک شما، هر ماه بسته‌ای از کتاب‌های دست‌چین‌شده و متناسب با سن برای بچه‌ها ارسال می‌شود — تا درِ خانه‌شان.</p>
+    <div class="hero-actions">
+      <a href="#donate" class="btn btn-primary">هدیه دادن بسته</a>
+      <a href="#about" class="btn btn-outline">بیشتر بدانید</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="about-emoji">📚</div>
+        <div class="float-card fc1">ارسال ماهانه</div>
+        <div class="float-card fc2">متناسب با سن</div>
+      </div>
+      <div class="about-text">
+        <span class="section-label">داستان از کجا شروع شد؟</span>
+        <h2 class="section-title">آبونه کتاب دماوند</h2>
+        <p>
+          بارها از دوستانمان قصه بسته‌های اشتراک کتاب کانون پرورش فکری کودکان و نوجوانان را شنیده‌ایم. تجربه خوشایند انتظار برای رسیدن پستچی، دیدن اسمشان روی پاکت‌ها و بعد هم خواندن کتاب‌های تازه!
+        </p>
+        <p>
+          هنوز هم رسیدن بسته‌های کتاب درِ خانه برای بچه‌ها جالب است. همه این‌ها باعث شد در <strong><a href="https://ketabedamavand.com/abooneh/" target="_blank" rel="noopener">کتابفروشی دماوند</a></strong> به فکر برنامه اشتراک کتاب بیفتیم. اسمش را گذاشتیم «آبونه کتاب».
+        </p>
+        <p>
+          ما با سازمان‌های مردم‌نهاد همکاری می‌کنیم تا بچه‌هایی را که خانواده‌هایشان توانایی خرید کتاب ندارند شناسایی کنیم. با کمک شما، هر ماه برایشان بسته کتاب می‌فرستیم.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY BOOKS -->
+<section class="why-books">
+  <div class="container">
+    <span class="section-label">چرا کتاب؟</span>
+    <h2 class="section-title">کتاب هدیه دادن به بچه‌ها فقط یک هدیه ساده نیست</h2>
+    <div class="why-books-text">
+      <p>وقتی به یک کودک کتاب هدیه می‌دهیم، انگار پنجره‌ای رو به جهان برایش باز می‌کنیم. پنجره‌ای که از آن می‌تواند دنیاهای دور را ببیند، با آدم‌های تازه آشنا شود و خیال را بی‌مرز تجربه کند. هر کتاب، دعوتی است به کشف؛ به پرسیدن، دیدن و فکر کردن.</p>
+      <p>کتاب فقط چند صفحه کاغذ نیست؛ مسیری است که آرام‌آرام در ذهن کودک شکل می‌گیرد و با او رشد می‌کند. داستان‌ها به او یاد می‌دهند که جهان بزرگ‌تر از تجربه‌های محدود روزمره است. می‌فهمد که آدم‌ها متفاوت‌اند، فرهنگ‌ها رنگارنگ‌اند و هر موضوعی می‌تواند از زاویه‌ای دیگر معنا پیدا کند. همین وسعت نگاه، سال‌ها بعد در انتخاب‌ها و رفتارهایش ریشه می‌دواند.</p>
+      <p>نسلی که با کتاب بزرگ می‌شود، جامعه‌ای متفاوت می‌سازد. آدم‌هایی که می‌خوانند، بیشتر می‌پرسند، عمیق‌تر می‌اندیشند و راحت‌تر همدلی می‌کنند. این‌ها همان ریشه‌هایی هستند که یک جامعه سالم و انسانی بر آن‌ها استوار می‌شود.</p>
+      <p>شاید در این روزها که دل‌نگرانی‌ها زیاد است و جهان بی‌ثبات به نظر می‌رسد، کتاب هدیه دادن به کودکان معنای عمیق‌تری پیدا کند. ما شاید نتوانیم همه چیز را یک‌باره تغییر دهیم، اما می‌توانیم قدم‌های کوچک و پیوسته برداریم. هر کتاب، بذری است که در ذهن یک کودک کاشته می‌شود؛ بذری که ممکن است سال‌ها بعد به درختی از آگاهی، مهربانی و مسئولیت تبدیل شود.</p>
+      <p>تغییر همیشه ناگهانی و پرهیاهو نیست. گاهی از دل یک داستان ساده آغاز می‌شود و آرام‌آرام در نگاه و تصمیم‌های یک انسان ریشه می‌گیرد. اگر امروز برای کودکان کتاب بخوانیم و برایشان کتاب هدیه ببریم، در واقع داریم به آینده امید می‌دهیم؛ امید به جهانی آگاه‌تر، مهربان‌تر و روشن‌تر.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="container">
+    <span class="section-label">چطور کار می‌کند</span>
+    <h2 class="section-title">آبونه کتاب چطور کار می‌کند؟</h2>
+    <p class="section-subtitle">یک فرآیند ساده برای رساندن کتاب به دست بچه‌هایی که نیاز دارند.</p>
+    <div class="how-steps">
+      <div class="step">
+        <div class="step-num">۱</div>
+        <h3>شما حمایت می‌کنید</h3>
+        <p>یکی از بسته‌های سه ماهه، شش ماهه یا یک ساله را انتخاب می‌کنید و هزینه آن را از طریق PayPal یا Venmo می‌پردازید.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">۲</div>
+        <h3>بچه‌ها شناسایی می‌شوند</h3>
+        <p>ما با سازمان‌های مردم‌نهاد همکاری می‌کنیم تا بچه‌هایی را که خانواده‌هایشان توانایی خرید کتاب ندارند شناسایی کنیم.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">۳</div>
+        <h3>کتاب‌ها دست‌چین می‌شوند</h3>
+        <p>تیم ما در کتابفروشی دماوند کتاب‌ها را متناسب با سن و علاقه‌مندی هر بچه انتخاب می‌کند و بسته را آماده می‌کند.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">۴</div>
+        <h3>ارسال ماهانه</h3>
+        <p>هر ماه بسته کتاب تا درِ خانه بچه‌ها ارسال می‌شود — هدیه‌ای از دانش و تخیل از طرف شما.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages" id="packages">
+  <div class="container">
+    <span class="section-label">در بسته‌ها چی داریم؟</span>
+    <h2 class="section-title">بسته‌های آبونه کتاب</h2>
+    <p class="section-subtitle">هر بسته شامل ارسال ماهانه کتاب‌های منتخب و متناسب با سن، به همراه یک کارت هدیه برای بچه است.</p>
+    <div class="pkg-grid">
+
+      <div class="pkg-card">
+        <div class="pkg-icon">📖</div>
+        <div class="pkg-duration">بسته ۳ ماهه</div>
+        <div class="pkg-price">$20</div>
+        <div class="pkg-price-note">۳ ارسال ماهانه</div>
+        <ul class="pkg-features">
+          <li>کتاب‌های دست‌چین‌شده هر ماه</li>
+          <li>متناسب با سن بچه</li>
+          <li>ارسال تا درِ خانه</li>
+        </ul>
+        <a href="#donate" class="btn btn-primary">هدیه دادن این بسته</a>
+      </div>
+
+      <div class="pkg-card featured">
+        <div class="pkg-icon">📚</div>
+        <div class="pkg-duration">بسته ۶ ماهه</div>
+        <div class="pkg-price">$40</div>
+        <div class="pkg-price-note">۶ ارسال ماهانه</div>
+        <ul class="pkg-features">
+          <li>همه امکانات بسته ۳ ماهه</li>
+          <li>به تدریج علاقه بچه و سطح خواندنش را هم در نظر می‌گیریم</li>
+          <li>ارتباط طولانی‌تر با خواندن</li>
+        </ul>
+        <a href="#donate" class="btn btn-primary">هدیه دادن این بسته</a>
+      </div>
+
+      <div class="pkg-card">
+        <div class="pkg-icon">🎁</div>
+        <div class="pkg-duration">بسته یک‌ساله</div>
+        <div class="pkg-price">$75</div>
+        <div class="pkg-price-note">۱۲ ارسال ماهانه</div>
+        <ul class="pkg-features">
+          <li>یک سال کامل کتاب</li>
+          <li>بسته‌های اختصاصی برای هر بچه</li>
+          <li>یک برنامه بلندمدت برای خواندن</li>
+        </ul>
+        <a href="#donate" class="btn btn-primary">هدیه دادن این بسته</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section class="donate" id="donate">
+  <div class="container">
+    <span class="section-label">حمایت از آبونه کتاب</span>
+    <h2 class="section-title">حمایت کنید</h2>
+    <div class="donate-grid">
+      <div class="donate-info">
+        <p>با حمایت مالی شما، ما بسته‌های کتاب را برای بچه‌های نیازمند تهیه و ارسال می‌کنیم. یکی از بسته‌ها را انتخاب کنید یا هر مبلغی که مایلید کمک کنید.</p>
+        <div class="donate-methods">
+          <a href="https://paypal.me/YOURHANDLE" target="_blank" rel="noopener" class="donate-method">
+            <div class="dm-icon paypal">P</div>
+            <div class="dm-details">
+              <h4>PayPal</h4>
+              <p>paypal.me/YOURHANDLE</p>
+            </div>
+          </a>
+          <a href="https://venmo.com/YOURHANDLE" target="_blank" rel="noopener" class="donate-method">
+            <div class="dm-icon venmo">V</div>
+            <div class="dm-details">
+              <h4>Venmo</h4>
+              <p>@YOURHANDLE</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="donate-right">
+        <h3>مبالغ پیشنهادی</h3>
+        <div class="amount-grid">
+          <button class="amount-btn" data-amount="20" onclick="selectAmount(this)">
+            $20
+            <span class="amount-label">۳ ماهه</span>
+          </button>
+          <button class="amount-btn active" data-amount="40" onclick="selectAmount(this)">
+            $40
+            <span class="amount-label">۶ ماهه</span>
+          </button>
+          <button class="amount-btn" data-amount="75" onclick="selectAmount(this)">
+            $75
+            <span class="amount-label">یک‌ساله</span>
+          </button>
+          <button class="amount-btn" data-amount="10" onclick="selectAmount(this)">
+            $10
+            <span class="amount-label">جزئی</span>
+          </button>
+          <button class="amount-btn" data-amount="50" onclick="selectAmount(this)">
+            $50
+            <span class="amount-label">دلخواه</span>
+          </button>
+          <button class="amount-btn" data-amount="100" onclick="selectAmount(this)">
+            $100
+            <span class="amount-label">+۲ کودک</span>
+          </button>
+        </div>
+        <input type="text" class="custom-amount" placeholder="یا مبلغ دلخواه وارد کنید ($)" id="customAmount">
+        <a href="https://paypal.me/YOURHANDLE" target="_blank" rel="noopener" class="btn btn-primary" id="donateBtn" style="width:100%;justify-content:center;">
+          حمایت از طریق PayPal
+        </a>
+        <p class="donate-note">
+          دکمه بالا را بزنید تا PayPal باز شود، یا مستقیماً به Venmo ما ارسال کنید. لطفاً در یادداشت پرداخت «Damavand Books» را بنویسید تا بتوانیم کمک شما را پیگیری کنیم.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact" id="impact">
+  <div class="container">
+    <span class="section-label">مزایای آبونه کتاب</span>
+    <h2 class="section-title">هر کتاب تفاوت ایجاد می‌کند</h2>
+    <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">به ما کمک کنید تا کتاب را به دست بچه‌های بیشتری برسانیم.</p>
+    <div class="impact-stats">
+      <div class="stat-card">
+        <div class="stat-num">حمایت آسان</div>
+        <div class="stat-label">شما کمک می‌کنید و ما ماهانه کتاب‌ها را برای بچه‌ها ارسال می‌کنیم</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">بسته‌های اختصاصی</div>
+        <div class="stat-label">برای هر بچه متناسب با سن و سالش کتاب انتخاب می‌کنیم</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">برنامه بلندمدت</div>
+        <div class="stat-label">بچه‌ها از تولدشان تا نوجوانی در بازه‌های مشخص بسته کتاب دریافت می‌کنند</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div style="text-align:center; margin-bottom: 2.5rem;">
+      <span class="section-label">سوالات متداول</span>
+      <h2 class="section-title">پرسش‌های رایج</h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">آبونه کتاب چیست؟</button>
+        <div class="faq-a">آبونه کتاب برنامه اشتراک کتاب کتابفروشی دماوند برای بچه‌هاست. ما با سازمان‌های مردم‌نهاد همکاری می‌کنیم تا بچه‌های نیازمند را شناسایی کنیم و هر ماه بسته‌ای از کتاب‌های دست‌چین‌شده را برایشان بفرستیم.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">بچه‌ها چه کتاب‌هایی دریافت می‌کنند؟</button>
+        <div class="faq-a">برای هر بچه متناسب با سن و سالش کتاب انتخاب می‌کنیم و به تدریج که با او آشناتر شدیم علاقه خودش و سطح خواندن را هم به معیارهامان اضافه می‌کنیم.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">آیا می‌توانم هر مبلغی کمک کنم؟</button>
+        <div class="faq-a">بله! مبالغ پیشنهادی ما متناسب با هزینه بسته‌های سه ماهه، شش ماهه و یک ساله هستند، ولی شما می‌توانید هر مبلغ دیگری هم کمک کنید. کمک‌های کوچک‌تر هم جمع‌آوری شده و صرف تأمین بسته‌ها می‌شوند.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">چطور از نتیجه کمکم باخبر می‌شوم؟</button>
+        <div class="faq-a">ما به‌طور منظم درباره بچه‌هایی که کتاب دریافت کرده‌اند و تأثیر کمک‌ها اطلاع‌رسانی می‌کنیم. هر زمان بخواهید هم می‌توانید با ما تماس بگیرید.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">چطور پرداخت کنم؟</button>
+        <div class="faq-a">فعلاً از طریق PayPal یا Venmo می‌توانید کمک مالی کنید. کافیست روی دکمه حمایت کلیک کنید و مبلغ مورد نظرتان را ارسال کنید.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p style="margin-bottom: 0.5rem;">
+      <strong style="color: rgba(255,255,255,0.9); font-size: 1.1rem;">آبونه کتاب دماوند</strong>
+    </p>
+    <p>
+      با کمک شما ممکن شده است.<br>
+      <a href="https://ketabedamavand.com/abooneh/" target="_blank" rel="noopener">کتابفروشی دماوند</a>، ایران، تهران، خیابان ۱۶ آذر، کوچه ادوارد براون، پلاک ۷
+    </p>
+    <p style="margin-top: 1rem; font-size: 0.82rem;">
+      سوالی دارید؟ با ما تماس بگیرید: <a href="mailto:your-email@example.com">your-email@example.com</a>
+    </p>
+    <svg class="footer-mountain" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 60 L40 20 L55 35 L80 8 L105 35 L120 22 L160 50 L200 60 Z" fill="white"/>
+    </svg>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  function selectAmount(btn) {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('customAmount').value = '';
+  }
+
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+</script>
+</body>
+</html>

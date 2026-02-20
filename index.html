@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Damavand Books for Kids — Gift a Child the Joy of Reading</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --purple: #370064;
+      --purple-light: #4a0e7a;
+      --purple-dark: #2a004d;
+      --orange: #F49000;
+      --orange-hover: #e08300;
+      --coral: #F9783F;
+      --blue-wash: #d6eaf8;
+      --blue-wash-light: #eaf4fc;
+      --text-dark: #2c2c3a;
+      --text-mid: #4a4a5a;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--purple);
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 4px 20px rgba(55,0,100,0.3); }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 1.5rem;
+    }
+    .nav-logo {
+      font-size: 1.4rem; font-weight: 900;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: rgba(255,255,255,0.8);
+      font-size: 0.92rem; font-weight: 700;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--orange); color: var(--white) !important;
+      padding: 0.5rem 1.4rem; border-radius: 8px;
+      border: 2px solid var(--purple-dark);
+      font-weight: 800 !important;
+      transition: background .2s, transform .15s;
+    }
+    .nav-cta:hover { background: var(--orange-hover); transform: translateY(-1px); }
+    .lang-switch {
+      color: rgba(255,255,255,0.6) !important;
+      font-size: 0.82rem !important;
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      transition: all .2s;
+    }
+    .lang-switch:hover {
+      color: var(--white) !important;
+      border-color: rgba(255,255,255,0.5);
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 6rem 1.5rem 4rem;
+      background: var(--white);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(to top, var(--blue-wash-light), transparent);
+    }
+    .hero-content { max-width: 750px; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: var(--purple); color: var(--white);
+      padding: 0.45rem 1.2rem; border-radius: 50px;
+      font-size: 0.85rem; font-weight: 800;
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.02em;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1.2;
+      color: var(--purple);
+      margin-bottom: 1.2rem;
+      font-weight: 900;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--coral);
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-mid);
+      max-width: 580px; margin: 0 auto 2.5rem;
+      font-weight: 600;
+    }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2.2rem;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 1rem; font-weight: 800;
+      text-decoration: none;
+      transition: all .2s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--orange); color: var(--white);
+      border: 2px solid var(--purple-dark);
+      box-shadow: 0 4px 0 var(--purple-dark);
+    }
+    .btn-primary:hover {
+      background: var(--orange-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 var(--purple-dark);
+    }
+    .btn-primary:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 0 var(--purple-dark);
+    }
+    .btn-outline {
+      background: var(--white); color: var(--purple);
+      border: 2px solid var(--purple);
+    }
+    .btn-outline:hover {
+      background: var(--purple); color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ---- SECTIONS ---- */
+    section { padding: 5rem 1.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.82rem; font-weight: 800;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      color: var(--coral);
+      margin-bottom: 1rem;
+      line-height: 1.25;
+      font-weight: 900;
+    }
+    .section-subtitle {
+      font-size: 1.05rem; color: var(--text-mid);
+      max-width: 620px; margin-bottom: 3rem;
+      font-weight: 600;
+    }
+
+    /* ---- ABOUT / STORY ---- */
+    .about {
+      background: var(--white);
+      position: relative;
+    }
+    .about::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 100%;
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 80%, rgba(214,234,248,0.5) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 90% 20%, rgba(214,234,248,0.3) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+    }
+    .about-visual {
+      background: linear-gradient(135deg, var(--blue-wash-light), var(--blue-wash));
+      border-radius: 24px;
+      padding: 3rem;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 350px;
+      position: relative;
+      border: 3px solid var(--purple);
+    }
+    .about-emoji {
+      font-size: 6rem;
+      line-height: 1;
+    }
+    .about-visual .float-card {
+      position: absolute;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 0.7rem 1.1rem;
+      border: 2px solid var(--purple);
+      font-size: 0.82rem; font-weight: 800;
+      color: var(--purple);
+    }
+    .float-card.fc1 { top: 1.5rem; right: 1.5rem; }
+    .float-card.fc2 { bottom: 1.5rem; left: 1.5rem; }
+    .about-text p {
+      margin-bottom: 1rem; color: var(--text-mid);
+      font-weight: 600;
+    }
+    .about-text a { color: var(--coral); font-weight: 700; }
+
+    /* ---- WHY BOOKS ---- */
+    .why-books {
+      background: var(--purple);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .why-books::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 80% 20%, rgba(74,14,122,0.5) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(74,14,122,0.4) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .why-books .container { position: relative; max-width: 780px; }
+    .why-books .section-label { color: var(--orange); }
+    .why-books .section-title { color: var(--white); margin-bottom: 2rem; }
+    .why-books-text p {
+      color: rgba(255,255,255,0.82);
+      font-weight: 600;
+      font-size: 1.02rem;
+      margin-bottom: 1.3rem;
+      line-height: 2;
+    }
+    .why-books-text p:first-child {
+      font-size: 1.12rem;
+      color: rgba(255,255,255,0.92);
+      font-weight: 700;
+    }
+    .why-books-text p:last-child {
+      color: var(--orange);
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+
+    /* ---- HOW IT WORKS ---- */
+    .how {
+      background: var(--white);
+      position: relative;
+    }
+    .how::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 100% 50% at 50% 100%, rgba(214,234,248,0.4) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .how .container { position: relative; }
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .step {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 2rem;
+      position: relative;
+      border: 2px solid var(--purple);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .step:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 0 var(--purple);
+    }
+    .step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 42px; height: 42px;
+      background: var(--purple); color: var(--white);
+      border-radius: 50%;
+      font-weight: 900; font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .step h3 {
+      font-size: 1.1rem; font-weight: 800;
+      color: var(--purple);
+      margin-bottom: 0.5rem;
+    }
+    .step p { font-size: 0.93rem; color: var(--text-mid); line-height: 1.6; font-weight: 600; }
+
+    /* ---- PACKAGES ---- */
+    .packages {
+      background: var(--purple);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .packages::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 80%, rgba(74,14,122,0.6) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 30%, rgba(74,14,122,0.4) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .packages .container { position: relative; }
+    .packages .section-label { color: var(--orange); }
+    .packages .section-title { color: var(--white); }
+    .packages .section-subtitle { color: rgba(255,255,255,0.7); }
+    .pkg-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .pkg-card {
+      background: rgba(255,255,255,0.06);
+      border: 2px solid rgba(255,255,255,0.25);
+      border-radius: 18px;
+      padding: 2.2rem;
+      text-align: center;
+      transition: all .25s;
+      position: relative;
+    }
+    .pkg-card:hover {
+      border-color: var(--orange);
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.1);
+    }
+    .pkg-card.featured {
+      background: rgba(255,255,255,0.12);
+      border-color: var(--orange);
+    }
+    .pkg-card.featured::before {
+      content: 'Most Popular';
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--orange); color: var(--white);
+      padding: 0.25rem 1rem; border-radius: 50px;
+      font-size: 0.75rem; font-weight: 800;
+      border: 2px solid var(--purple-dark);
+    }
+    .pkg-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+    .pkg-duration {
+      font-size: 1.15rem; font-weight: 800;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .pkg-price {
+      font-size: 2.2rem; font-weight: 900;
+      color: var(--orange);
+      margin-bottom: 0.3rem;
+    }
+    .pkg-price-note {
+      font-size: 0.82rem; color: rgba(255,255,255,0.6);
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+    }
+    .pkg-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 1.5rem;
+    }
+    .pkg-features li {
+      padding: 0.35rem 0;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      display: flex; align-items: flex-start; gap: 0.5rem;
+      font-weight: 600;
+    }
+    .pkg-features li::before {
+      content: '✓';
+      color: var(--orange);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .pkg-card .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* ---- DONATE SECTION ---- */
+    .donate {
+      background: var(--white);
+      position: relative;
+    }
+    .donate::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 90% 60% at 50% 0%, rgba(214,234,248,0.5) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .donate .container { position: relative; }
+    .donate-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .donate-info p {
+      color: var(--text-mid);
+      margin-bottom: 1.5rem;
+      font-size: 1.02rem;
+      font-weight: 600;
+    }
+    .donate-methods {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .donate-method {
+      display: flex; align-items: center; gap: 1.2rem;
+      background: var(--white);
+      border: 2px solid var(--purple);
+      border-radius: 14px;
+      padding: 1.2rem 1.5rem;
+      text-decoration: none;
+      color: var(--purple);
+      transition: all .2s;
+    }
+    .donate-method:hover {
+      background: var(--purple);
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 0 var(--purple-dark);
+    }
+    .donate-method:hover .dm-details p { color: rgba(255,255,255,0.7); }
+    .dm-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; font-weight: 900;
+      flex-shrink: 0;
+    }
+    .dm-icon.paypal { background: #003087; color: #fff; }
+    .dm-icon.venmo { background: #3D95CE; color: #fff; }
+    .dm-details h4 { font-size: 1rem; font-weight: 800; margin-bottom: 0.1rem; }
+    .dm-details p { font-size: 0.85rem; color: var(--text-mid); margin: 0; font-weight: 600; transition: color .2s; }
+
+    .donate-right {
+      background: var(--purple);
+      border: 3px solid var(--purple-dark);
+      border-radius: 20px;
+      padding: 2.2rem;
+      color: var(--white);
+    }
+    .donate-right h3 {
+      font-size: 1.15rem; font-weight: 800;
+      margin-bottom: 1.2rem;
+      color: var(--orange);
+    }
+    .amount-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0.7rem;
+      margin-bottom: 1.2rem;
+    }
+    .amount-btn {
+      padding: 0.75rem;
+      border-radius: 10px;
+      border: 2px solid rgba(255,255,255,0.2);
+      background: transparent; color: var(--white);
+      font-family: inherit;
+      font-size: 1rem; font-weight: 800;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .amount-btn:hover, .amount-btn.active {
+      border-color: var(--orange);
+      background: rgba(244,144,0,0.15);
+      color: var(--orange);
+    }
+    .amount-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      display: block; margin-top: 0.2rem;
+      font-weight: 600;
+    }
+    .amount-btn.active .amount-label,
+    .amount-btn:hover .amount-label { color: var(--orange); }
+    .custom-amount {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      border: 2px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.06);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 1rem; font-weight: 700;
+      margin-bottom: 1.2rem;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .custom-amount::placeholder { color: rgba(255,255,255,0.3); }
+    .custom-amount:focus { border-color: var(--orange); }
+    .donate-note {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+      margin-top: 1rem;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    /* ---- IMPACT ---- */
+    .impact {
+      background: var(--white);
+      text-align: center;
+      position: relative;
+    }
+    .impact::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 80% 50%, rgba(214,234,248,0.4) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% 70%, rgba(214,234,248,0.3) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .impact .container { position: relative; }
+    .impact-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .stat-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 2rem 1.5rem;
+      border: 2px solid var(--purple);
+    }
+    .stat-num {
+      font-size: 2.4rem; font-weight: 900;
+      color: var(--coral);
+      margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-size: 0.9rem; color: var(--text-mid);
+      font-weight: 700;
+    }
+
+    /* ---- FAQ ---- */
+    .faq { background: var(--white); }
+    .faq-list { max-width: 700px; margin: 0 auto; }
+    .faq-item {
+      border: 2px solid var(--purple);
+      border-radius: 14px;
+      margin-bottom: 0.8rem;
+      overflow: hidden;
+    }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer;
+      font-weight: 800; font-size: 1.02rem;
+      color: var(--purple);
+      background: none; border: none; width: 100%;
+      text-align: left; padding: 1.1rem 1.3rem;
+      font-family: inherit; line-height: 1.5;
+      transition: background .2s;
+    }
+    .faq-q:hover { background: rgba(55,0,100,0.03); }
+    .faq-q::after {
+      content: '+';
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--orange);
+      flex-shrink: 0; margin-left: 1rem;
+      transition: transform .2s;
+    }
+    .faq-item.open .faq-q { background: rgba(55,0,100,0.03); }
+    .faq-item.open .faq-q::after { content: '−'; }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height .3s ease, padding .3s ease;
+      color: var(--text-mid);
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.7;
+      padding: 0 1.3rem;
+    }
+    .faq-item.open .faq-a {
+      max-height: 200px;
+      padding: 0 1.3rem 1.1rem;
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: var(--purple);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 3rem 1.5rem 2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      position: relative;
+      overflow: hidden;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 500px; height: 120px;
+      background: radial-gradient(ellipse 100% 100% at 50% 100%, rgba(74,14,122,0.6) 0%, transparent 70%);
+    }
+    footer .container { position: relative; }
+    footer a { color: var(--orange); text-decoration: none; font-weight: 700; }
+    footer a:hover { text-decoration: underline; }
+
+    /* mountain silhouette in footer */
+    .footer-mountain {
+      display: block;
+      margin: 1.5rem auto 0;
+      width: 200px;
+      opacity: 0.2;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 768px) {
+      .about-grid, .donate-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .nav-links { display: none; }
+      .hero { padding: 5.5rem 1.5rem 3rem; min-height: auto; }
+      .amount-grid { grid-template-columns: repeat(2, 1fr); }
+      section { padding: 3.5rem 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: center; }
+      .pkg-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Damavand <span>Books</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">Our Mission</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="fa.html" class="lang-switch">فارسی</a></li>
+      <li><a href="#donate" class="nav-cta">Donate</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Books Change Lives</div>
+    <h1>Gift a Child in Iran <em>the Joy of Reading</em></h1>
+    <p>Your donation funds curated monthly book packages for children — delivered to their doorstep, chosen just for them.</p>
+    <div class="hero-actions">
+      <a href="#donate" class="btn btn-primary">Donate Now</a>
+      <a href="#about" class="btn btn-outline">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="about-emoji">📚</div>
+        <div class="float-card fc1">Monthly deliveries</div>
+        <div class="float-card fc2">Age-appropriate picks</div>
+      </div>
+      <div class="about-text">
+        <span class="section-label">Our Mission</span>
+        <h2 class="section-title">Books at Every Doorstep</h2>
+        <p>
+          <strong><a href="https://ketabedamavand.com/abooneh/" target="_blank" rel="noopener">Ketabe Damavand</a></strong> is a beloved bookstore in Tehran. We run a
+          book subscription program that delivers curated, age-appropriate books to children across Iran every month.
+        </p>
+        <p>
+          We work with NGOs to identify children in need — many from families who cannot afford books on their own. Your donation makes it possible for a child to receive a package of hand-picked books, sparking curiosity and building a lifelong love of reading.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY BOOKS -->
+<section class="why-books">
+  <div class="container">
+    <span class="section-label">Why Books?</span>
+    <h2 class="section-title">Giving a book to a child is more than a simple gift</h2>
+    <div class="why-books-text">
+      <p>When we gift a book to a child, it's as if we're opening a window to the world for them. A window through which they can see faraway lands, meet new people, and experience imagination without limits. Every book is an invitation to discover — to ask, to see, and to think.</p>
+      <p>A book is not just a few pages of paper; it's a path that gradually takes shape in a child's mind and grows with them. Stories teach them that the world is bigger than their limited everyday experiences. They come to understand that people are different, cultures are colorful, and every subject can find meaning from a different angle. This breadth of perspective takes root years later in their choices and behaviors.</p>
+      <p>A generation that grows up with books builds a different society. People who read ask more questions, think more deeply, and empathize more easily. These are the very roots upon which a healthy and humane society stands.</p>
+      <p>Perhaps in these days, when worries are many and the world seems unstable, gifting books to children takes on a deeper meaning. We may not be able to change everything at once, but we can take small, steady steps. Every book is a seed planted in a child's mind — a seed that may one day grow into a tree of awareness, kindness, and responsibility.</p>
+      <p>Change is not always sudden and loud. Sometimes it begins from the heart of a simple story and quietly takes root in a person's outlook and decisions. If today we read to children and gift them books, we are giving hope to the future — hope for a more aware, kinder, and brighter world.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="container">
+    <span class="section-label">How It Works</span>
+    <h2 class="section-title">From Your Donation to a Child's Bookshelf</h2>
+    <p class="section-subtitle">A simple, transparent process to bring books to children who need them.</p>
+    <div class="how-steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>You Donate</h3>
+        <p>Choose a package tier or donate any custom amount via PayPal or Venmo.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>We Find Children in Need</h3>
+        <p>We work with NGOs in Iran to identify children from families who cannot afford books.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Books Are Curated</h3>
+        <p>Our team at the bookstore hand-picks books based on each child's age, interests, and reading level.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Monthly Delivery</h3>
+        <p>Every month, a package of books arrives at the child's doorstep — a gift of knowledge and imagination.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages" id="packages">
+  <div class="container">
+    <span class="section-label">What You Fund</span>
+    <h2 class="section-title">Book Subscription Packages</h2>
+    <p class="section-subtitle">Each package includes monthly deliveries of curated, age-appropriate books plus a personalized gift card for the child.</p>
+    <div class="pkg-grid">
+
+      <div class="pkg-card">
+        <div class="pkg-icon">📖</div>
+        <div class="pkg-duration">3-Month Package</div>
+        <div class="pkg-price">$20</div>
+        <div class="pkg-price-note">3 monthly deliveries</div>
+        <ul class="pkg-features">
+          <li>Hand-picked books each month</li>
+          <li>Personalized to child's age</li>
+          <li>Delivered to their home</li>
+        </ul>
+        <a href="#donate" class="btn btn-primary">Fund This Package</a>
+      </div>
+
+      <div class="pkg-card featured">
+        <div class="pkg-icon">📚</div>
+        <div class="pkg-duration">6-Month Package</div>
+        <div class="pkg-price">$40</div>
+        <div class="pkg-price-note">6 monthly deliveries</div>
+        <ul class="pkg-features">
+          <li>Everything in 3-month</li>
+          <li>Books tailored to interests over time</li>
+          <li>Longer engagement with reading</li>
+        </ul>
+        <a href="#donate" class="btn btn-primary">Fund This Package</a>
+      </div>
+
+      <div class="pkg-card">
+        <div class="pkg-icon">🎁</div>
+        <div class="pkg-duration">1-Year Package</div>
+        <div class="pkg-price">$75</div>
+        <div class="pkg-price-note">12 monthly deliveries</div>
+        <ul class="pkg-features">
+          <li>A full year of books</li>
+          <li>Deeply personalized selections</li>
+          <li>Maximum impact on a child's life</li>
+        </ul>
+        <a href="#donate" class="btn btn-primary">Fund This Package</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section class="donate" id="donate">
+  <div class="container">
+    <span class="section-label">Make a Difference</span>
+    <h2 class="section-title">Donate Today</h2>
+    <div class="donate-grid">
+      <div class="donate-info">
+        <p>Every dollar goes directly toward funding book subscriptions for children in need. Choose a suggested amount or send any amount you'd like.</p>
+        <div class="donate-methods">
+          <a href="https://paypal.me/YOURHANDLE" target="_blank" rel="noopener" class="donate-method">
+            <div class="dm-icon paypal">P</div>
+            <div class="dm-details">
+              <h4>PayPal</h4>
+              <p>paypal.me/YOURHANDLE</p>
+            </div>
+          </a>
+          <a href="https://venmo.com/YOURHANDLE" target="_blank" rel="noopener" class="donate-method">
+            <div class="dm-icon venmo">V</div>
+            <div class="dm-details">
+              <h4>Venmo</h4>
+              <p>@YOURHANDLE</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="donate-right">
+        <h3>Suggested Donation Amounts</h3>
+        <div class="amount-grid">
+          <button class="amount-btn" data-amount="20" onclick="selectAmount(this)">
+            $20
+            <span class="amount-label">3 months</span>
+          </button>
+          <button class="amount-btn active" data-amount="40" onclick="selectAmount(this)">
+            $40
+            <span class="amount-label">6 months</span>
+          </button>
+          <button class="amount-btn" data-amount="75" onclick="selectAmount(this)">
+            $75
+            <span class="amount-label">1 year</span>
+          </button>
+          <button class="amount-btn" data-amount="10" onclick="selectAmount(this)">
+            $10
+            <span class="amount-label">Partial</span>
+          </button>
+          <button class="amount-btn" data-amount="50" onclick="selectAmount(this)">
+            $50
+            <span class="amount-label">Custom</span>
+          </button>
+          <button class="amount-btn" data-amount="100" onclick="selectAmount(this)">
+            $100
+            <span class="amount-label">2+ kids</span>
+          </button>
+        </div>
+        <input type="text" class="custom-amount" placeholder="Or enter a custom amount ($)" id="customAmount">
+        <a href="https://paypal.me/YOURHANDLE" target="_blank" rel="noopener" class="btn btn-primary" id="donateBtn" style="width:100%;justify-content:center;">
+          Donate via PayPal
+        </a>
+        <p class="donate-note">
+          Click the button above to open PayPal, or send directly to our Venmo. Please include "Damavand Books" in the note so we can track your generous donation.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact" id="impact">
+  <div class="container">
+    <span class="section-label">Our Goal</span>
+    <h2 class="section-title">Every Book Makes a Difference</h2>
+    <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">Help us reach more children with the gift of reading. Here's what we're working toward.</p>
+    <div class="impact-stats">
+      <div class="stat-card">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Children to reach this year</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">600+</div>
+        <div class="stat-label">Books to deliver</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Goes to book packages</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div style="text-align:center; margin-bottom: 2.5rem;">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">Common Questions</h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Where does my donation go?</button>
+        <div class="faq-a">100% of your donation funds book subscription packages for children in need. We work with NGOs in Iran to identify the children, curate age-appropriate books at our bookstore in Tehran, and deliver them monthly.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What books do the children receive?</button>
+        <div class="faq-a">Our team curates each package based on the child's age, interests, and reading level. Books are carefully selected to be engaging, educational, and age-appropriate.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I donate any amount?</button>
+        <div class="faq-a">Absolutely! While our suggested amounts correspond to specific package durations (3-month, 6-month, 1-year), you can donate any amount. Partial donations are pooled together to fund packages.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I know my donation was used?</button>
+        <div class="faq-a">We share regular updates on how donations are being used and which children are receiving books. You can reach out to us anytime for information about the impact of your contribution.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Who runs this initiative?</button>
+        <div class="faq-a">This program is run by the team at Ketabe Damavand, a bookstore in Tehran. We collaborate with NGOs to identify children in need, curate the books, and handle delivery. This page is our international donation channel.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p style="margin-bottom: 0.5rem;">
+      <strong style="color: rgba(255,255,255,0.9); font-size: 1.1rem;">Damavand Books for Kids</strong>
+    </p>
+    <p>
+      Powered by the generosity of people like you.<br>
+      A program by <a href="https://ketabedamavand.com/abooneh/" target="_blank" rel="noopener">Ketabe Damavand</a>, Tehran.
+    </p>
+    <p style="margin-top: 1rem; font-size: 0.82rem;">
+      Questions? Reach out at <a href="mailto:your-email@example.com">your-email@example.com</a>
+    </p>
+    <!-- Simple mountain silhouette SVG -->
+    <svg class="footer-mountain" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 60 L40 20 L55 35 L80 8 L105 35 L120 22 L160 50 L200 60 Z" fill="white"/>
+    </svg>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  function selectAmount(btn) {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('customAmount').value = '';
+  }
+
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+</script>
+</body>
+</html>

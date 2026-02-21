@@ -103,6 +103,19 @@
       transform: translateY(-1px);
       box-shadow: 0 4px 16px rgba(74,63,110,0.3);
     }
+    .header-lang {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      text-decoration: none;
+      padding: 0.4rem 0.6rem;
+      border-radius: 8px;
+      transition: color .2s, background .2s;
+    }
+    .header-lang:hover {
+      color: var(--purple);
+      background: rgba(74,63,110,0.06);
+    }
     .header-menu-btn {
       display: none;
       width: 44px;
@@ -826,6 +839,7 @@
     <a href="#faq">FAQ</a>
   </nav>
   <div class="header-actions">
+    <a href="fa.html" class="header-lang">فارسی</a>
     <a href="#donate" class="header-donate">Donate</a>
     <button type="button" class="header-menu-btn" aria-label="Open menu" aria-expanded="false" onclick="toggleNav()">
       <span class="icon" aria-hidden="true"><span></span><span></span><span></span></span>

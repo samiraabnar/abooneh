@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سند چشم‌انداز — طرح اشتراک کتاب برای کودکان ایران</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --purple: #4a3f6e;
+      --orange: #c17f59;
+      --bg: #f6f4f0;
+      --card: #fffefb;
+      --text: #2d2a26;
+      --text-mid: #6b6560;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Vazirmatn', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-weight: 500;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .slideshow {
+      position: relative;
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 5rem;
+    }
+
+    .slide { display: none; animation: fade 0.4s ease; }
+    .slide.active { display: block; }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+    .slide-inner {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 2rem 1.75rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      border: 1px solid rgba(45,42,38,0.06);
+    }
+
+    .slide h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--purple);
+      margin-bottom: 0.35rem;
+      line-height: 1.35;
+    }
+    .slide .subtitle {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(45,42,38,0.08);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 1.25rem 0 0.5rem;
+    }
+    .section-head:first-of-type { margin-top: 0; }
+    .section-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(74,63,110,0.1);
+      border-radius: 10px;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .section-head h2 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+    }
+    .slide p {
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 0.65rem;
+    }
+    .slide ul {
+      list-style: none;
+      margin: 0.4rem 0 0.75rem;
+    }
+    .slide ul li {
+      position: relative;
+      padding-right: 1.1rem;
+      margin-bottom: 0.35rem;
+      font-size: 0.875rem;
+      color: var(--text);
+    }
+    .slide ul li::before {
+      content: '•';
+      position: absolute;
+      right: 0;
+      color: var(--orange);
+      font-weight: 700;
+    }
+    .partner-block {
+      margin-top: 0.75rem;
+      padding: 0.85rem 1rem;
+      background: rgba(74,63,110,0.05);
+      border-radius: 12px;
+      border-right: 3px solid var(--purple);
+    }
+    .partner-block .section-head { margin-top: 0; }
+    .partner-block .section-head h2 { font-size: 0.875rem; }
+    .partner-block ul { margin: 0.35rem 0 0; }
+    .partner-block ul li { font-size: 0.8125rem; }
+    .step {
+      margin-top: 0.75rem;
+      padding: 0.7rem 0.9rem;
+      background: rgba(193,127,89,0.08);
+      border-radius: 12px;
+      border-right: 3px solid var(--orange);
+    }
+    .step .section-head { margin: 0 0 0.25rem; }
+    .step .section-head h2 { font-size: 0.875rem; color: var(--orange); }
+    .step p { margin-bottom: 0; font-size: 0.8125rem; }
+
+    .nav-wrap {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,254,251,0.98);
+      border-top: 1px solid rgba(45,42,38,0.08);
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.6rem 1.25rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--purple);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .nav-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(74,63,110,0.3);
+    }
+    .nav-btn.outline {
+      background: transparent;
+      color: var(--purple);
+      border: 1px solid var(--purple);
+    }
+    .nav-btn.outline:hover { background: rgba(74,63,110,0.06); }
+    .nav-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+    .dots { display: flex; gap: 0.5rem; }
+    .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: rgba(45,42,38,0.2);
+      border: none;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .dot.active { background: var(--purple); }
+    .dot:hover:not(.active) { background: rgba(45,42,38,0.4); }
+    .back-link {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      text-decoration: none;
+      padding: 0.4rem 0.75rem;
+      border-radius: 8px;
+      transition: color .2s, background .2s;
+    }
+    .back-link:hover { color: var(--purple); background: rgba(74,63,110,0.06); }
+  </style>
+</head>
+<body>
+
+  <a href="fa.html" class="back-link">← بازگشت به سایت</a>
+
+  <div class="slideshow">
+    <!-- SLIDE 1 -->
+    <div class="slide active" data-slide="1">
+      <div class="slide-inner">
+        <h1>سند چشم‌انداز: طرح «اشتراک کتاب برای کودکان ایران»</h1>
+        <p class="subtitle">پیشنهاد همکاری برای توسعه بخش حمایتی آبونه کتاب کودکان</p>
+
+        <div class="section-head">
+          <span class="section-icon" aria-hidden="true">📋</span>
+          <h2>۱. چکیده طرح</h2>
+        </div>
+        <p>کتاب‌فروشی دماوند سیستم «آبونه کتاب» دارد. هدف این طرح، گسترش بخش حمایتی آن برای کودکانی است که به‌دلیل شرایط اقتصادی یا جغرافیایی در محدودیت‌اند.</p>
+        <p>همکاری پیشنهادی:</p>
+        <ul>
+          <li><strong>بنیاد گلستان</strong> — زیرساخت مالی رسمی (آمریکا و بین‌الملل)</li>
+          <li><strong>کتاب‌فروشی دماوند</strong> — آبونه، کارشناسی کتاب و توزیع در ایران</li>
+        </ul>
+
+        <div class="section-head">
+          <span class="section-icon" aria-hidden="true">📖</span>
+          <h2>۲. چرا کتاب؟</h2>
+        </div>
+        <p>کتاب به کودک پنجره‌ای به جهان می‌دهد؛ برای دیدن دنیاهای تازه و تجربه خیال. کتاب در ذهن کودک مسیری می‌سازد که با او رشد می‌کند و وسعت نگاهش را شکل می‌دهد.</p>
+        <p>نسلی که با کتاب بزرگ می‌شود، بیشتر می‌پرسد و راحت‌تر همدلی می‌کند. هر کتاب بذری است برای آگاهی، مهربانی و مسئولیت.</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide" data-slide="2">
+      <div class="slide-inner">
+        <h1>سند چشم‌انداز (ادامه)</h1>
+        <p class="subtitle">ضرورت، مکانیزم، ساختار همکاری</p>
+
+        <div class="section-head">
+          <span class="section-icon" aria-hidden="true">🎯</span>
+          <h2>۳. ضرورت توسعه بخش حمایتی</h2>
+        </div>
+        <ul>
+          <li><strong>حذف کتاب از سبد خانوار</strong> — در خانواده‌های کم‌درآمد کتاب اولین قلم حذف‌شده است.</li>
+          <li><strong>استمرار به‌جای اهدای یک‌باره</strong> — آبونه عادت مطالعه را شکل می‌دهد.</li>
+          <li><strong>کارشناسی تخصصی</strong> — دماوند انتخاب کتاب مناسب سن و نیاز کودک را انجام می‌دهد.</li>
+        </ul>
+
+        <div class="section-head">
+          <span class="section-icon" aria-hidden="true">⚙️</span>
+          <h2>۴. مکانیزم اجرا</h2>
+        </div>
+        <p><strong>چرخه تعامل:</strong> بازخورد ساده (نقاشی، صوت، یک جمله) برای ارتباط و سنجش اثر — نه شرط دریافت کتاب.</p>
+        <p><strong>ارسال به خانه بچه‌ها:</strong> کتاب‌ها مستقیم به درِ خانه کودک می‌رسند تا بچه‌ها با کتاب ارتباط بهتری برقرار کنند.</p>
+        <p><strong>همچنین مدل کتابخانه‌ای:</strong> در کنار اشتراک فردی، حمایت از کتابخانه‌ها و مدارس مناطق محروم برای ضریب نفوذ بالاتر.</p>
+
+        <div class="section-head">
+          <span class="section-icon" aria-hidden="true">🤝</span>
+          <h2>۵. ساختار همکاری</h2>
+        </div>
+        <div class="partner-block">
+          <div class="section-head">
+            <span class="section-icon" aria-hidden="true">🏪</span>
+            <h2>کتاب‌فروشی دماوند</h2>
+          </div>
+          <ul>
+            <li>زیرساخت آبونه و ظرفیت حمایتی؛ دسترسی به خیریه‌ها برای دریافت لیست کودکان نیازمند؛ انتخاب و بسته‌بندی کتاب؛ توزیع و جمع‌آوری بازخورد.</li>
+          </ul>
+        </div>
+        <div class="partner-block">
+          <div class="section-head">
+            <span class="section-icon" aria-hidden="true">🏛️</span>
+            <h2>بنیاد گلستان</h2>
+          </div>
+          <ul>
+            <li>زیرساخت مالی رسمی و رسید مالیاتی؛ Corporate Matching؛ انتقال شفاف منابع؛ دسترسی به خیریه‌ها و لیست کودکان تحت حمایت برای هدف‌گیری اشتراک کتاب.</li>
+          </ul>
+        </div>
+        <div class="partner-block">
+          <div class="section-head">
+            <span class="section-icon" aria-hidden="true">🚀</span>
+            <h2>تسهیل‌گر (سمیرا آب‌نار)</h2>
+          </div>
+          <ul>
+            <li>کمک به راه‌اندازی طرح (دماوند زیرساخت را داشت)؛ پیگیری همکاری با دماوند و بنیاد گلستان؛ فاز پایلوت و وب‌سایت؛ کمپین و گزارش‌دهی شفاف.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="slide" data-slide="3">
+      <div class="slide-inner">
+        <h1>نقشه راه و دعوت به اقدام</h1>
+        <p class="subtitle">سند چشم‌انداز — اشتراک کتاب برای کودکان ایران</p>
+
+        <div class="section-head">
+          <span class="section-icon" aria-hidden="true">🗺️</span>
+          <h2>۶. نقشه راه</h2>
+        </div>
+        <div class="step">
+          <div class="section-head">
+            <span class="section-icon" aria-hidden="true">۱</span>
+            <h2>فاز پایلوت (در حال اجرا)</h2>
+          </div>
+          <p>وب‌سایت و جذب محدود از طریق دوستان (PayPal). هدف: تست جریان کاری و هزینه‌های لجستیک.</p>
+        </div>
+        <div class="step">
+          <div class="section-head">
+            <span class="section-icon" aria-hidden="true">۲</span>
+            <h2>زیرساخت رسمی (بنیاد گلستان)</h2>
+          </div>
+          <p>همکاری رسمی با بنیاد گلستان: ساختار حقوقی و مالی مشترک، گزینه‌های حمایت شفاف (اشتراک ۳، ۶ یا ۱۲ ماهه)، و کمپین‌های گسترده‌تر.</p>
+        </div>
+        <div class="step">
+          <div class="section-head">
+            <span class="section-icon" aria-hidden="true">۳</span>
+            <h2>شبکه اروپایی (هلند)</h2>
+          </div>
+          <p>نهاد مکمل برای ترویج هنر و ادبیات؛ جذب حامی در اروپا.</p>
+        </div>
+
+        <div class="section-head">
+          <span class="section-icon" aria-hidden="true">💬</span>
+          <h2>۷. دعوت به اقدام</h2>
+        </div>
+        <p>فاز پایلوت با حمایت دوستان شروع شده است. برای جریان پایدار و گسترده، به ساختار رسمی و همکاری سازمانی نیاز داریم.</p>
+      </div>
+    </div>
+  </div>
+
+  <nav class="nav-wrap" aria-label="ناوبری اسلایدها">
+    <button type="button" class="nav-btn outline" id="prev" aria-label="اسلاید قبل">قبلی</button>
+    <div class="dots" role="tablist">
+      <button type="button" class="dot active" aria-label="اسلاید ۱" data-slide="1"></button>
+      <button type="button" class="dot" aria-label="اسلاید ۲" data-slide="2"></button>
+      <button type="button" class="dot" aria-label="اسلاید ۳" data-slide="3"></button>
+    </div>
+    <button type="button" class="nav-btn" id="next" aria-label="اسلاید بعد">بعدی</button>
+  </nav>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    let current = 0;
+
+    function goTo(i) {
+      current = (i + slides.length) % slides.length;
+      slides.forEach((s, k) => s.classList.toggle('active', k === current));
+      dots.forEach((d, k) => d.classList.toggle('active', k === current));
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === slides.length - 1;
+    }
+
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') goTo(current - 1);
+      if (e.key === 'ArrowLeft') goTo(current + 1);
+    });
+
+    goTo(0);
+  </script>
+</body>
+</html>
